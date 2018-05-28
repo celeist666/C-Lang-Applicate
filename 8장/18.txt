@@ -1,0 +1,32 @@
+﻿#include <stdio.h>
+int cus_len(char*);
+
+int main()
+{
+	char buffer[100];
+	int i=0;
+
+	printf("문자열을 입력하시오 : ");
+	gets(buffer);
+
+	char * cpy = (char*)malloc((cus_len(buffer) + 1));
+
+	strcpy(cpy, buffer);
+
+	printf("\n\n%s\n", cpy);
+
+	free(buffer);
+
+}
+
+int cus_len(char* arr) {
+
+	int cnt = 0;
+
+	for (; arr[cnt] != NULL;)
+	{
+		cnt++;
+	}
+
+	return cnt;
+}

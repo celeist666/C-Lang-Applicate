@@ -1,0 +1,56 @@
+﻿#include<stdio.h>
+#include <string.h>
+#include <math.h>
+
+void PrintArray(const double * arr, const int size) {
+	int i = 0;
+	printf("배열 : ");
+	for (; i < size; arr++,i++)
+	{
+		printf("%.2lf ",*arr);
+	}
+}
+
+double Variance(const double * arr, const int size) {
+	int i = 0;
+	double avg = 0, var = 0;
+
+
+	for (; i < size; arr++, i++)
+	{
+		avg += *arr;
+	}
+
+	avg /= 5;
+
+	arr -= 5;
+
+	for (; i < size*2; arr++, i++)
+	{
+		var += (*arr - avg) * (*arr - avg);
+	}
+
+	return var / 5;
+}
+
+
+double StandardDeviation(const double *arr, const int size) {
+	return sqrt(Variance(arr,size));
+}
+
+
+
+int main(void) {
+
+	double arr [5];
+	//double arr[5] = {1.1, 2.2, 3.3, 4.4, 5.5};
+
+	printf("5개의 실수를 입력하세요 : ");
+	scanf("%lf %lf %lf %lf %lf",&arr[0], &arr[1], &arr[2], &arr[3], &arr[4]);
+
+	PrintArray(arr,5);
+	puts("\n");
+	printf("분산 : %lf\n",Variance(arr,5));
+
+	printf("표준편차 : %lf\n", StandardDeviation(arr,5));
+}

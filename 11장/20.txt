@@ -1,0 +1,103 @@
+#include < stdio.h >
+#include < stdlib.h >
+#include < string.h > 
+#pragma warning(disable: 4996)
+
+typedef struct contact {
+	char name[20];
+	char num[20];
+}
+contact;
+
+void bubble_num_sort(contact* arr[], int size)
+{
+	contact* temp= NULL;
+	int i, j;
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size-1 - i; j++)
+		{
+			if (arr[j]->num < arr[j + 1]->num)
+			{
+				strcpy(temp->name, arr[j]->name);
+				strcpy(temp->num, arr[j]->num);
+				strcpy(arr[j]->name, arr[j + 1]->name);
+				strcpy(arr[j]->num, arr[j + 1]->num);
+				strcpy(arr[j + 1]->name, temp->name);
+				strcpy(arr[j + 1]->num, temp->num);
+				free(temp);
+			}
+		}
+	}
+}
+
+void bubble_name_sort(contact* arr[], int size)
+{
+	contact* temp = malloc(sizeof(contact));
+	int i,j;
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < size-1 - i; j++)
+		{
+			if (arr[j]->name < arr[j + 1]->name)
+			{
+				strcpy(temp->name, arr[j]->name);
+				strcpy(temp->num, arr[j]->num);
+				strcpy(arr[j]->name, arr[j + 1]->name);
+				strcpy(arr[j]->num, arr[j + 1]->num);
+				strcpy(arr[j + 1]->name, temp->name);
+				strcpy(arr[j + 1]->num, temp->num);
+				free(temp);
+			}
+		}
+	}
+}
+
+int main() {
+	int i = 0, cnt = 0, ipt = 0;
+	char name[10] = "n", num[20] = "1";
+	contact *arr[100] = { NULL };
+	printf("저장할 연락처의 개수  : ");
+	scanf("%d", &cnt);
+	for (i = 0; i < cnt; i++) {
+		arr[i] = malloc(sizeof(contact));
+		printf("\n이    름 : ");
+		char * temp = malloc(sizeof(char) * 20);
+		scanf("%s", temp);
+		strcpy(arr[i]->name, temp);
+		free(temp);
+		printf("\n전화번호 입력 : ");
+		char * ntemp = malloc(sizeof(char) * 20);
+		scanf("%s", ntemp);
+		strcpy(arr[i]->num, ntemp);
+		free(ntemp);
+	}
+	while (1)
+	{
+		printf("0 종료\n1 이름순 출력\n2 전화번호순 출력\n출력방법 선택 : ");
+		scanf("%d", &ipt);
+		if (ipt = 1)
+		{
+			bubble_name_sort(arr,2);
+			for (i = 0; i < cnt; i++) {
+				printf("\n%s\t\t%s", arr[i]->name, arr[i]->num);
+			}
+		}
+
+		else if (ipt = 2)
+		{
+			bubble_num_sort(arr, 2);
+			for (i = 0; i < cnt; i++) {
+				printf("\n%s\t\t%s", arr[i]->name, arr[i]->num);
+			}
+		}
+
+		else if (ipt = 0)
+		{
+			break;
+		}
+
+		puts("\n");
+	}
+
+}

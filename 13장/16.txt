@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+
+int main(int argc, char* argv[]) {
+
+	FILE *fp1, *fp2;
+	char ch1, ch2;
+	int flag = 1;
+
+	fp1 = fopen(argv[1], "r");
+	fp2 = fopen(argv[2], "r");
+
+	while ((ch1 = fgetc(fp1)) != EOF) {
+		if ((ch2 = fgetc(fp2)) == EOF) {
+			puts("EOF 다른 파일"); flag--; break;
+		}
+		if (ch1 != ch2) {
+			printf("%c %c",ch1, ch2);
+			puts("다른글자 다른 파일"); flag--; break;
+		}
+	}
+	if (flag)
+	{
+		puts("같은 파일");
+	}
+	fclose(fp1);
+	fclose(fp2);
+}

@@ -1,0 +1,37 @@
+﻿#include <stdio.h>
+
+void Add_All(int*, int, int);
+
+int main() {
+
+	int i, add=0;
+	
+	int arr[10] = {15, 23, 7, 78, 34, 67, 45, 36, 90, 71};
+	printf("[ 원본  배열 ]  ");
+	for (i = 0; i < 10; i++)
+	{
+		printf("%2d ", arr[i]);
+	}
+
+	printf("\n증가량을 입력하시오 : ");
+	scanf_s("%d", &add);
+
+	Add_All(arr, 10, add);
+	
+	printf("[ 증가후 배열 ]  ");
+	for (i = 0; i < 10; i++)
+	{
+		printf("%2d ", arr[i]);
+	}
+}
+
+void Add_All(int* arr, int size, int add) {
+	
+	int i=0;
+	
+	for (i = 0; i < size; i++)
+	{
+		arr[i] += add;
+
+	}
+}

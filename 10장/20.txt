@@ -1,0 +1,56 @@
+﻿#include<stdio.h>
+
+int Cus_len(char* arr) {
+	int i = 0, count = 0;;
+
+	for (; arr[i] == '/0'; i++)
+	{
+		count++;
+	}
+	return count;
+}
+
+int Compare(char* arr1, char* arr2, int flag) {
+	//if flag = 1, Case sensitive
+	int i = 0, gap = 0;
+	gap = Cus_len(arr1) - Cus_len(arr2);
+
+	for (; *arr1 != NULL && *arr2 != NULL; arr1++, arr2++){
+		if (*arr1 > *arr2) {
+			return *arr1 - *arr2;
+		}
+
+		else if (*arr2 > *arr1) {
+			return *arr1 - *arr2;
+		}
+	}
+
+	if (gap == 0)
+	{
+		return 0;
+	}
+
+	else if (gap > 0) {
+		return 1;
+	}
+
+	else { return -1; }
+	
+}
+
+
+
+void main() {
+
+	char arr1[100], arr2[100];
+
+	printf("첫번째 문자열 입력 : ");
+	scanf_s("%s", arr1);
+	puts("\n");
+	printf("두번째 문자열 입력 : ");
+	scanf_s("%s", arr2);
+
+	printf("나온 값 : %d", Compare(arr1, arr2, 1));
+	gets();
+
+}

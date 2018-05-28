@@ -1,0 +1,55 @@
+#include < stdio.h > 
+#include < stdlib.h > 
+#pragma warning(disable: 4996)
+
+int* Compress(int pre_array[][10], int post_array[], int size) {
+	int i, j, sum = 0;
+
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < 10; j++)
+		{
+			pre_array[i][j] = sum++;
+		}
+	}
+
+	for (i = 0; i < size; i++)
+	{
+		for (j = 0; j < 10; j++)
+		{
+			printf("%2d ", pre_array[i][j]);
+		}
+		putchar('\n');
+	}
+
+	for (i = 0; i < size; i++)
+	{
+		sum = 0;
+
+		for (j = 0; j < 10; j++)
+		{
+			sum += pre_array[i][j];
+		}
+		post_array[i] = sum;
+	}
+	return post_array;
+}
+
+
+int main() {
+
+	int i=0;
+
+	int pre_array[2][10] = { { 0 },{ 0 } };
+
+	int post_array[2] = { 0,0 };
+
+	int* p = Compress(pre_array, post_array, 2);
+
+	for (i = 0; i < 2; i++)
+	{
+		printf("%2d ", p[i]);
+	}
+
+
+}
