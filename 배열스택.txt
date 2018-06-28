@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+typedef struct {
+	int *stack;
+	int top;
+} StackType;
+
+// 스택 초기화 함수
+void init(StackType *s)
+{
+	s->top = -1;
+}
+// 공백 상태 검출 함수
+int is_empty(StackType *s)
+{
+	return (s->top == -1);
+}
+// 포화 상태 검출 함수
+int is_full(StackType *s, int size)
+{
+	return (s->top == (size - 1));
+}
+// 삽입함수
+void push(StackType *s, int item, int size)
+{
+	if (is_full(s, size)) {
+		fprintf(stderr, "스택 포화 에러\n");
+		return;
+	}
+	else s->stack[++(s->top)] = item;
+}
+// 삭제함수
+int pop(StackType *s)
+{
+	if (is_empty(s)) {
+		fprintf(stderr, "스택 공백 에러 pop\n");
+		exit(1);
+	}
+	else return s->stack[(s->top)--];
+}
+// 주함수
+void main()
+{
+	StackType s;
+	int size = 20, ipt = 0, flag = 0;
+	init(&s);
+
+	while (ipt<100) {
+		printf("1 ~ 몇까지의 소수를 출력할지 입력하시오 : ");
+		scanf("%d", &ipt);
+		if (ipt<100)
+		{
+			printf("100 이상의 수를 입력하시오\n");
+		}
+	}
+	s.stack = (int*)malloc(sizeof(int) * size);
+
+	for (int i = 1; i <= ipt; i++) {
+		if (is_full(&s,size)) {
+			size += 5;
+			s.stack = (int*)realloc(s.stack, sizeof(int) * size);
+		}
+
+		if (i >= 10)
+		{
+			for (int j = 2; j <= (int)sqrt(i); j++)
+			{
+				if (i%j == 0)
+				{
+					flag++;
+					break;
+				}
+			}
+		}
+
+		else
+		{
+			push(&s, i, size);
+			continue;
+		}
+
+		if (flag == 0)
+		{
+			printf("%d는 소수이므로 pop : %d\n", i, pop(&s));
+		}
+		else {
+			push(&s, i, size);
+		}
+		flag = 0;
+	}
+
+	free(s.stack); // 할당한 메모리 해제
+
+}
