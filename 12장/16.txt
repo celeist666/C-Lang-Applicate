@@ -1,0 +1,58 @@
+#include <stdio.h>
+#define cus_islower(c) (((c) >= 'a') && ((c) <= 'z'))
+#define cus_isupper(c) (((c) >= 'A') && ((c) <= 'Z'))
+#define cus_strcpy(d, s) i = 0;\
+						while (1)\
+						{\
+							d[i] = s[i];\
+							if (d[i] == '\0'){\
+								break;}\
+							i++;}
+
+#define cus_strcat(dest, src) for (i = 0; dest[i] != '\0'; i++);\
+							for (j = 0; src[j] != '\0'; j++)\
+							dest[i + j] = src[j];\
+							dest[i + j] = '\0';\
+
+#define SIZE 5
+
+
+void main() {
+	char arr[5] = "abcd";
+	char arr1[5] = "ABCD"; char arr2[10] = {NULL};
+	int i = 0, j = 0; char temp = '\0';
+
+	for (i = 0; i <strlen(arr); i++)
+	{
+		if (cus_islower(arr[i])) {
+			puts("소문자");
+		}
+		else
+		{
+			puts("대문자");
+		}
+	}
+
+	for (i = 0; i <strlen(arr1); i++)
+	{
+		if (cus_isupper(arr1[i])) {
+			puts("대문자");
+		}
+		else
+		{
+			puts("소문자");
+		}
+	}
+
+	cus_strcpy(arr2,arr1);
+
+	printf("%s\n", arr2);
+
+	cus_strcat(arr2, arr1);
+
+	printf("%s\n", arr2);
+
+	//arr2 = "asd";
+	
+	//cus_strcat(arr, arr2);
+}

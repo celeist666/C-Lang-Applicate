@@ -1,0 +1,34 @@
+#include < stdio.h >
+#include < stdlib.h >
+#include < string.h > 
+#pragma warning(disable: 4996)
+
+typedef struct contact {
+	char name[20];
+	char num[20];
+}
+contact;
+int main() {
+	int i = 0, cnt = 0, ipt = 0;
+	char name[10] = "n", num[20] = "1";
+	contact * arr[100];
+	printf("저장할 연락처의 개수  : ");
+	scanf("%d", &cnt);
+	for (i = 0; i < cnt; i++) {
+		arr[i] = malloc(sizeof(contact));
+		printf("\n이    름 : ");
+		char * temp = malloc(sizeof(char) * 20);
+		scanf("%s", temp);
+		strcpy(arr[i]->name, temp);
+		free(temp);
+		printf("\n전화번호 입력 : ");
+		char * ntemp = malloc(sizeof(char) * 20);
+		scanf("%s", ntemp);
+		strcpy(arr[i]->num, ntemp);
+		free(ntemp);
+	}
+	for (i = 0; i < cnt; i++) {
+		printf("\n%s\t\t%s", arr[i]->name, arr[i]->num);
+	}
+	puts("\n");
+}

@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct login_info {
+	char id[20];
+	char passwd[20];
+}LOGIN_INFO;
+
+int Compare(const void* e1, const void* e2) {
+	char c1 = *(char*)e1;
+	char c2 = *(char*)e2;
+	return (c1 - c2);
+}
+int main(int argc, char* argv[]) {
+	FILE *fp1;
+	int i = 0, size = 0, flag = 1;
+	char* tempid, temppwd;
+
+	fp1 = fopen("data.dat", "rb");
+	size = (int)fgetc(fp1);
+	printf("패스워드 파일을 읽었습니다. %d명의 사용자 정보가 있습니다", size);
+
+	LOGIN_INFO* arr = malloc((size) * sizeof(LOGIN_INFO));
+
+	fread(arr, sizeof(LOGIN_INFO), size, fp1);
+
+	qsort(arr, size, sizeof(LOGIN_INFO), Compare);
+
+	while (flag) {
+		puts("ID를 입력하세요 : ");
+		scanf("%s", tempid);
+		puts("패스워드를 입력하세요 : ");
+		scanf("%s", temppwd);
+
+		if (bsearch(tempid, arr, size, sizeof(LOGIN_INFO), Compare) != NULL) {
+			if (bsearch(temppwd, arr, size, sizeof(LOGIN_INFO), Compare) != NULL) {
+				puts("LOGIN OK");
+			}
+			else
+			{
+				puts("LOGIN FAILED");
+			}
+
+		}
+		else
+		{
+			puts("LOGIN FAILED");
+		}
+	}
+
+	fclose(fp1);
+
+}

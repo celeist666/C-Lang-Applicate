@@ -1,0 +1,23 @@
+﻿#include <stdio.h>
+
+void reverse_string_and_print(char *str)
+{
+	char *src = str;
+	char *end = src + strlen(src) - 1;
+	while (end > src)
+	{
+		char t = *end;
+		*end-- = *src;
+		*src++ = t;
+	}
+	printf("%s", str);
+}
+
+int main()
+{
+	char data[] = "Hello World!";
+	reverse_string_and_print(data);
+	putchar('\n');
+	printf("%s\n", data);
+	return(0);
+}
